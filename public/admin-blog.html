@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Management - Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/" class="logo">BackendPro</a>
+        
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/dashboard.html">Dashboard</a></li>
+          <li><a href="/admin.html">Admin</a></li>
+          <li><a href="/admin-blog.html" class="active">Blog Management</a></li>
+          <li><a href="#" id="logout-btn">Logout</a></li>
+        </ul>
+        
+        <div class="mobile-menu" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Admin Blog Management -->
+  <section class="dashboard" style="padding-top: 8rem;">
+    <div class="container">
+      <div class="dashboard-header">
+        <h1 class="dashboard-title">Blog Management</h1>
+        <button id="new-post-btn" class="btn">New Post</button>
+      </div>
+      
+      <div id="admin-alert" class="alert hidden"></div>
+      
+      <div class="dashboard-grid">
+        <div class="dashboard-sidebar">
+          <ul class="dashboard-nav">
+            <li><a href="#posts" class="active" onclick="showTab('posts')">All Posts</a></li>
+            <li><a href="#comments" onclick="showTab('comments')">Comments</a></li>
+            <li><a href="#categories" onclick="showTab('categories')">Categories</a></li>
+          </ul>
+        </div>
+        
+        <div class="dashboard-content">
+          <!-- Posts Tab -->
+          <div id="posts" class="tab-content">
+            <div class="mb-4">
+              <input type="text" id="post-search" placeholder="Search posts..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Published</th>
+                    <th>Date</th>
+                    <th>Views</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="posts-table">
+                  <tr>
+                    <td colspan="6" class="text-center">Loading posts...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div id="posts-pagination" class="text-center mt-4">
+              <!-- Pagination will be added here -->
+            </div>
+          </div>
+          
+          <!-- Comments Tab -->
+          <div id="comments" class="tab-content hidden">
+            <h2 class="mb-4">Comment Moderation</h2>
+            
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Post</th>
+                    <th>Comment</th>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="comments-table">
+                  <tr>
+                    <td colspan="5" class="text-center">Loading comments...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div id="comments-pagination" class="text-center mt-4">
+              <!-- Pagination will be added here -->
+            </div>
+          </div>
+          
+          <!-- Categories Tab -->
+          <div id="categories" class="tab-content hidden">
+            <h2 class="mb-4">Categories</h2>
+            
+            <div class="mb-4">
+              <p>Manage the categories available for blog posts.</p>
+              <p><strong>Note:</strong> The system currently uses predefined categories: Announcement, Tutorial, News, and Discussion.</p>
+            </div>
+            
+            <div class="category-list">
+              <div class="category-item">
+                <span class="badge-primary">Announcement</span>
+                <p>Important updates and announcements about the course.</p>
+              </div>
+              
+              <div class="category-item">
+                <span class="badge-success">Tutorial</span>
+                <p>Step-by-step guides and tutorials on backend development topics.</p>
+              </div>
+              
+              <div class="category-item">
+                <span class="badge-info">News</span>
+                <p>Latest news and updates in the backend development world.</p>
+              </div>
+              
+              <div class="category-item">
+                <span class="badge-warning">Discussion</span>
+                <p>Open discussions and thought pieces on backend development topics.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Post Modal -->
+  <div id="post-modal" class="modal hidden">
+    <div class="modal-content" style="max-width: 800px;">
+      <span class="close">&times;</span>
+      <h2 id="post-modal-title">New Post</h2>
+      
+      <form id="post-form">
+        <input type="hidden" id="post-id">
+        
+        <div class="form-group">
+          <label for="post-title">Title</label>
+          <input type="text" id="post-title" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="post-category">Category</label>
+          <select id="post-category" required>
+            <option value="announcement">Announcement</option>
+            <option value="tutorial">Tutorial</option>
+            <option value="news">News</option>
+            <option value="discussion">Discussion</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="post-tags">Tags (comma separated)</label>
+          <input type="text" id="post-tags" placeholder="nodejs, databases, api">
+        </div>
+        
+        <div class="form-group">
+          <label for="post-featured-image">Featured Image URL</label>
+          <input type="text" id="post-featured-image" placeholder="https://example.com/image.jpg">
+        </div>
+        
+        <div class="form-group">
+          <label for="post-content">Content</label>
+          <textarea id="post-content" required></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="post-published" checked>
+            Published
+          </label>
+        </div>
+        
+        <button type="submit" class="btn">Save Post</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>BackendPro</h3>
+          <p>Comprehensive backend developer interview preparation course.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 BackendPro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    let simplemde;
+    let currentPage = 1;
+    
+    // Check if user is logged in and is admin
+    document.addEventListener('DOMContentLoaded', () => {
+      const authToken = localStorage.getItem('authToken');
+      const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+      
+      if (!authToken) {
+        window.location.href = '/login.html';
+        return;
+      }
+      
+      if (userInfo.role !== 'admin') {
+        window.location.href = '/dashboard.html';
+        return;
+      }
+      
+      // Initialize SimpleMDE
+      simplemde = new SimpleMDE({ 
+        element: document.getElementById('post-content'),
+        spellChecker: false,
+        autosave: {
+          enabled: true,
+          uniqueId: 'post-editor'
+        }
+      });
+      
+      // Load posts
+      loadPosts();
+      
+      // Set up search with debounce
+      const searchInput = document.getElementById('post-search');
+      let debounceTimer;
+      searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+          loadPosts();
+        }, 500);
+      });
+      
+      // Set up new post button
+      document.getElementById('new-post-btn').addEventListener('click', openNewPostModal);
+      
+      // Set up post form
+      document.getElementById('post-form').addEventListener('submit', savePost);
+      
+      // Set up modal close button
+      document.querySelector('#post-modal .close').addEventListener('click', closePostModal);
+    });
+    
+    // Tab navigation
+    function showTab(tabId) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.add('hidden');
+      });
+      
+      // Show selected tab
+      document.getElementById(tabId).classList.remove('hidden');
+      
+      // Update active nav link
+      document.querySelectorAll('.dashboard-nav a').forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      document.querySelector(`.dashboard-nav a[href="#${tabId}"]`).classList.add('active');
+      
+      // Load tab content
+      if (tabId === 'posts') {
+        loadPosts();
+      } else if (tabId === 'comments') {
+        loadComments();
+      }
+    }
+    
+    async function loadPosts(page = 1) {
+      try {
+        const postsTable = document.getElementById('posts-table');
+        postsTable.innerHTML = '<tr><td colspan="6" class="text-center">Loading posts...</td></tr>';
+        
+        currentPage = page;
+        const search = document.getElementById('post-search').value;
+        
+        // Build query string
+        let queryString = `?page=${page}&limit=10`;
+        if (search) queryString += `&search=${encodeURIComponent(search)}`;
+        
+        // Fetch posts
+        const response = await fetch(`/api/posts${queryString}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          }
+        });
+        
+        const data = await response.json();
+        
+        if (data.posts.length === 0) {
+          postsTable.innerHTML = '<tr><td colspan="6" class="text-center">No posts found</td></tr>';
+          document.getElementById('posts-pagination').innerHTML = '';
+          return;
+        }
+        
+        // Render posts
+        postsTable.innerHTML = '';
+        data.posts.forEach(post => {
+          const row = document.createElement('tr');
+          
+          row.innerHTML = `
+            <td><a href="/blog/${post.slug}" target="_blank">${post.title}</a></td>
+            <td><span class="badge-${getCategoryClass(post.category)}">${post.category}</span></td>
+            <td>${post.isPublished ? '<span class="badge-success">Yes</span>' : '<span class="badge-warning">Draft</span>'}</td>
+            <td>${new Date(post.createdAt).toLocaleDateString()}</td>
+            <td>${post.viewCount}</td>
+            <td>
+              <button class="btn btn-sm" onclick="editPost('${post._id}')">Edit</button>
+              <button class="btn btn-sm btn-danger" onclick="deletePost('${post._id}')">Delete</button>
+            </td>
+          `;
+          
+          postsTable.appendChild(row);
+        });
+        
+        // Render pagination
+        renderPagination('posts-pagination', data.currentPage, data.totalPages, loadPosts);
+      } catch (error) {
+        console.error('Error loading posts:', error);
+        document.getElementById('posts-table').innerHTML = '<tr><td colspan="6" class="text-center">Error loading posts</td></tr>';
+      }
+    }
+    
+    async function loadComments(page = 1) {
+      try {
+        const commentsTable = document.getElementById('comments-table');
+        commentsTable.innerHTML = '<tr><td colspan="5" class="text-center">Loading comments...</td></tr>';
+        
+        // Fetch comments
+        const response = await fetch(`/api/posts/comments?page=${page}&limit=10`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          }
+        });
+        
+        const data = await response.json();
+        
+        if (data.comments.length === 0) {
+          commentsTable.innerHTML = '<tr><td colspan="5" class="text-center">No comments found</td></tr>';
+          document.getElementById('comments-pagination').innerHTML = '';
+          return;
+        }
+        
+        // Render comments
+        commentsTable.innerHTML = '';
+        data.comments.forEach(comment => {
+          const row = document.createElement('tr');
+          
+          row.innerHTML = `
+            <td><a href="/blog/${comment.post.slug}" target="_blank">${comment.post.title}</a></td>
+            <td>${comment.content.length > 50 ? comment.content.substring(0, 50) + '...' : comment.content}</td>
+            <td>${comment.user.name}</td>
+            <td>${new Date(comment.createdAt).toLocaleDateString()}</td>
+            <td>
+              <button class="btn btn-sm btn-danger" onclick="deleteComment('${comment.post._id}', '${comment._id}')">Delete</button>
+            </td>
+          `;
+          
+          commentsTable.appendChild(row);
+        });
+        
+        // Render pagination
+        renderPagination('comments-pagination', data.currentPage, data.totalPages, loadComments);
+      } catch (error) {
+        console.error('Error loading comments:', error);
+        document.getElementById('comments-table').innerHTML = '<tr><td colspan="5" class="text-center">Error loading comments</td></tr>';
+      }
+    }
+    
+    function renderPagination(containerId, currentPage, totalPages, loadFunction) {
+      const paginationContainer = document.getElementById(containerId);
+      
+      if (totalPages <= 1) {
+        paginationContainer.innerHTML = '';
+        return;
+      }
+      
+      let paginationHTML = '<div class="pagination">';
+      
+      // Previous button
+      if (currentPage > 1) {
+        paginationHTML += `<a href="#" onclick="event.preventDefault(); ${loadFunction.name}(${currentPage - 1});" class="pagination-item">&laquo; Previous</a>`;
+      } else {
+        paginationHTML += `<span class="pagination-item disabled">&laquo; Previous</span>`;
+      }
+      
+      // Page numbers
+      const startPage = Math.max(1, currentPage - 2);
+      const endPage = Math.min(totalPages, currentPage + 2);
+      
+      if (startPage > 1) {
+        paginationHTML += `<a href="#" onclick="event.preventDefault(); ${loadFunction.name}(1);" class="pagination-item">1</a>`;
+        if (startPage > 2) {
+          paginationHTML += `<span class="pagination-item">...</span>`;
+        }
+      }
+      
+      for (let i = startPage; i <= endPage; i++) {
+        if (i === currentPage) {
+          paginationHTML += `<span class="pagination-item active">${i}</span>`;
+        } else {
+          paginationHTML += `<a href="#" onclick="event.preventDefault(); ${loadFunction.name}(${i});" class="pagination-item">${i}</a>`;
+        }
+      }
+      
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+          paginationHTML += `<span class="pagination-item">...</span>`;
+        }
+        paginationHTML += `<a href="#" onclick="event.preventDefault(); ${loadFunction.name}(${totalPages});" class="pagination-item">${totalPages}</a>`;
+      }
+      
+      // Next button
+      if (currentPage < totalPages) {
+        paginationHTML += `<a href="#" onclick="event.preventDefault(); ${loadFunction.name}(${currentPage + 1});" class="pagination-item">Next &raquo;</a>`;
+      } else {
+        paginationHTML += `<span class="pagination-item disabled">Next &raquo;</span>`;
+      }
+      
+      paginationHTML += '</div>';
+      paginationContainer.innerHTML = paginationHTML;
+    }
+    
+    function openNewPostModal() {
+      document.getElementById('post-modal-title').textContent = 'New Post';
+      document.getElementById('post-id').value = '';
+      document.getElementById('post-title').value = '';
+      document.getElementById('post-category').value = 'discussion';
+      document.getElementById('post-tags').value = '';
+      document.getElementById('post-featured-image').value = '';
+      simplemde.value('');
+      document.getElementById('post-published').checked = true;
+      
+      document.getElementById('post-modal').classList.remove('hidden');
+    }
+    
+    async function editPost(postId) {
+      try {
+        // Fetch post details
+        const response = await fetch(`/api/posts/${postId}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch post');
+        }
+        
+        const post = await response.json();
+        
+        // Populate form
+        document.getElementById('post-modal-title').textContent = 'Edit Post';
+        document.getElementById('post-id').value = post._id;
+        document.getElementById('post-title').value = post.title;
+        document.getElementById('post-category').value = post.category;
+        document.getElementById('post-tags').value = post.tags.join(', ');
+        document.getElementById('post-featured-image').value = post.featuredImage || '';
+        simplemde.value(post.content);
+        document.getElementById('post-published').checked = post.isPublished;
+        
+        document.getElementById('post-modal').classList.remove('hidden');
+      } catch (error) {
+        console.error('Error fetching post:', error);
+        showAlert('admin-alert', 'Error fetching post details', 'danger');
+      }
+    }
+    
+    async function savePost(e) {
+      e.preventDefault();
+      
+      try {
+        const postId = document.getElementById('post-id').value;
+        const title = document.getElementById('post-title').value;
+        const category = document.getElementById('post-category').value;
+        const tags = document.getElementById('post-tags').value.split(',').map(tag => tag.trim()).filter(tag => tag);
+        const featuredImage = document.getElementById('post-featured-image').value;
+        const content = simplemde.value();
+        const isPublished = document.getElementById('post-published').checked;
+        
+        const postData = {
+          title,
+          category,
+          tags,
+          featuredImage,
+          content,
+          isPublished
+        };
+        
+        let response;
+        
+        if (postId) {
+          // Update existing post
+          response = await fetch(`/api/posts/${postId}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+            },
+            body: JSON.stringify(postData)
+          });
+        } else {
+          // Create new post
+          response = await fetch('/api/posts', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+            },
+            body: JSON.stringify(postData)
+          });
+        }
+        
+        if (!response.ok) {
+          throw new Error('Failed to save post');
+        }
+        
+        const result = await response.json();
+        
+        closePostModal();
+        showAlert('admin-alert', result.message, 'success');
+        loadPosts(currentPage);
+      } catch (error) {
+        console.error('Error saving post:', error);
+        showAlert('admin-alert', 'Error saving post', 'danger');
+      }
+    }
+    
+    async function deletePost(postId) {
+      if (!confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
+        return;
+      }
+      
+      try {
+        const response = await fetch(`/api/posts/${postId}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to delete post');
+        }
+        
+        const result = await response.json();
+        showAlert('admin-alert', result.message, 'success');
+        loadPosts(currentPage);
+      } catch (error) {
+        console.error('Error deleting post:', error);
+        showAlert('admin-alert', 'Error deleting post', 'danger');
+      }
+    }
+    
+    async function deleteComment(postId, commentId) {
+      if (!confirm('Are you sure you want to delete this comment? This action cannot be undone.')) {
+        return;
+      }
+      
+      try {
+        const response = await fetch(`/api/posts/${postId}/comments/${commentId}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to delete comment');
+        }
+        
+        const result = await response.json();
+        showAlert('admin-alert', result.message, 'success');
+        loadComments(currentPage);
+      } catch (error) {
+        console.error('Error deleting comment:', error);
+        showAlert('admin-alert', 'Error deleting comment', 'danger');
+      }
+    }
+    
+    function closePostModal() {
+      document.getElementById('post-modal').classList.add('hidden');
+    }
+    
+    function showAlert(elementId, message, type) {
+      const alertElement = document.getElementById(elementId);
+      alertElement.textContent = message;
+      alertElement.className = `alert alert-${type}`;
+      alertElement.classList.remove('hidden');
+      
+      setTimeout(() => {
+        alertElement.classList.add('hidden');
+      }, 5000);
+    }
+    
+    function getCategoryClass(category) {
+      switch (category) {
+        case 'announcement':
+          return 'primary';
+        case 'tutorial':
+          return 'success';
+        case 'news':
+          return 'info';
+        case 'discussion':
+          return 'warning';
+        default:
+          return 'secondary';
+      }
+    }
+  </script>
+</body>
+</html>

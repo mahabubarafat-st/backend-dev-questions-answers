@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Backend Developer Course</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/" class="logo">BackendPro</a>
+        
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/dashboard.html">Dashboard</a></li>
+          <li><a href="/admin.html" class="active">Admin</a></li>
+          <li><a href="/admin-blog.html">Blog Management</a></li>
+          <li><a href="#" id="logout-btn">Logout</a></li>
+        </ul>
+        
+        <div class="mobile-menu" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Admin Dashboard -->
+  <section class="dashboard" id="admin-dashboard">
+    <div class="container">
+      <div class="dashboard-header">
+        <h1 class="dashboard-title">Admin Dashboard</h1>
+      </div>
+      
+      <div id="admin-alert" class="alert hidden"></div>
+      
+      <div class="dashboard-grid">
+        <div class="dashboard-sidebar">
+          <ul class="dashboard-nav">
+            <li><a href="#overview" class="active" onclick="showTab('overview')">Overview</a></li>
+            <li><a href="#users" onclick="showTab('users')">Users</a></li>
+            <li><a href="#content" onclick="showTab('content')">Course Content</a></li>
+            <li><a href="#transactions" onclick="showTab('transactions')">Transactions</a></li>
+          </ul>
+        </div>
+        
+        <div class="dashboard-content">
+          <!-- Overview Tab -->
+          <div id="overview" class="tab-content">
+            <h2 class="mb-4">Dashboard Overview</h2>
+            
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-value" id="total-users">0</div>
+                <div class="stat-label">Total Users</div>
+              </div>
+              
+              <div class="stat-card">
+                <div class="stat-value" id="premium-users">0</div>
+                <div class="stat-label">Premium Users</div>
+              </div>
+              
+              <div class="stat-card">
+                <div class="stat-value" id="conversion-rate">0%</div>
+                <div class="stat-label">Conversion Rate</div>
+              </div>
+              
+              <div class="stat-card">
+                <div class="stat-value" id="total-revenue">$0</div>
+                <div class="stat-label">Total Revenue</div>
+              </div>
+            </div>
+            
+            <div class="mb-4">
+              <h3 class="mb-3">Recent Transactions</h3>
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th>Email</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Date</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recent-transactions">
+                    <tr>
+                      <td colspan="5" class="text-center">Loading...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="mb-3">Recent Users</h3>
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Subscription</th>
+                      <th>Joined</th>
+                    </tr>
+                  </thead>
+                  <tbody id="recent-users">
+                    <tr>
+                      <td colspan="4" class="text-center">Loading...</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Users Tab -->
+          <div id="users" class="tab-content hidden">
+            <h2 class="mb-4">Manage Users</h2>
+            
+            <div class="mb-4">
+              <input type="text" id="user-search" placeholder="Search users..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subscription</th>
+                    <th>Joined</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="users-table">
+                  <tr>
+                    <td colspan="5" class="text-center">Loading...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <!-- User Edit Modal -->
+            <div id="user-modal" class="modal hidden">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Edit User</h2>
+                
+                <form id="edit-user-form">
+                  <input type="hidden" id="edit-user-id">
+                  
+                  <div class="form-group">
+                    <label for="edit-user-name">Name</label>
+                    <input type="text" id="edit-user-name" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-user-email">Email</label>
+                    <input type="email" id="edit-user-email" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-user-role">Role</label>
+                    <select id="edit-user-role">
+                      <option value="user">User</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-user-subscription">Subscription</label>
+                    <select id="edit-user-subscription">
+                      <option value="free">Free</option>
+                      <option value="premium">Premium</option>
+                    </select>
+                  </div>
+                  
+                  <button type="submit" class="btn">Save Changes</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Course Content Tab -->
+          <div id="content" class="tab-content hidden">
+            <h2 class="mb-4">Manage Course Content</h2>
+            
+            <div class="mb-4">
+              <h3>Course Details</h3>
+              <form id="edit-course-form" class="mb-4">
+                <div class="form-group">
+                  <label for="edit-course-title">Title</label>
+                  <input type="text" id="edit-course-title" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="edit-course-description">Description</label>
+                  <textarea id="edit-course-description" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                  <label for="edit-course-price">Price ($)</label>
+                  <input type="number" id="edit-course-price" min="0" step="0.01" required>
+                </div>
+                
+                <button type="submit" class="btn">Update Course</button>
+              </form>
+            </div>
+            
+            <div class="mb-4">
+              <div class="section-header">
+                <h3>Sections</h3>
+                <button id="add-section-btn" class="btn btn-sm">Add Section</button>
+              </div>
+              
+              <div id="sections-list">
+                <p class="text-center">Loading sections...</p>
+              </div>
+            </div>
+            
+            <!-- Section Modal -->
+            <div id="section-modal" class="modal hidden">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="section-modal-title">Add Section</h2>
+                
+                <form id="edit-section-form">
+                  <input type="hidden" id="edit-section-id">
+                  
+                  <div class="form-group">
+                    <label for="edit-section-title">Title</label>
+                    <input type="text" id="edit-section-title" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-section-description">Description</label>
+                    <textarea id="edit-section-description" rows="3" required></textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-section-icon">Icon (Font Awesome class)</label>
+                    <input type="text" id="edit-section-icon" placeholder="fas fa-code">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-section-order">Order</label>
+                    <input type="number" id="edit-section-order" min="1" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-section-free-questions">Free Questions Count</label>
+                    <input type="number" id="edit-section-free-questions" min="0" required>
+                  </div>
+                  
+                  <button type="submit" class="btn">Save Section</button>
+                </form>
+              </div>
+            </div>
+            
+            <!-- Question Modal -->
+            <div id="question-modal" class="modal hidden">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="question-modal-title">Add Question</h2>
+                
+                <form id="edit-question-form">
+                  <input type="hidden" id="edit-question-section-id">
+                  <input type="hidden" id="edit-question-id">
+                  
+                  <div class="form-group">
+                    <label for="edit-question-title">Title</label>
+                    <input type="text" id="edit-question-title" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-question-question">Question</label>
+                    <textarea id="edit-question-question" rows="3" required></textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-question-answer">Answer</label>
+                    <textarea id="edit-question-answer" rows="5" required></textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-question-difficulty">Difficulty</label>
+                    <select id="edit-question-difficulty">
+                      <option value="beginner">Beginner</option>
+                      <option value="intermediate">Intermediate</option>
+                      <option value="advanced">Advanced</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-question-tags">Tags (comma separated)</label>
+                    <input type="text" id="edit-question-tags" placeholder="databases, sql, indexing">
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-question-code">Code Example (optional)</label>
+                    <textarea id="edit-question-code" rows="5"></textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="edit-question-resources">Resources (one URL per line)</label>
+                    <textarea id="edit-question-resources" rows="3"></textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox" id="edit-question-free">
+                      Make this question free
+                    </label>
+                  </div>
+                  
+                  <button type="submit" class="btn">Save Question</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Transactions Tab -->
+          <div id="transactions" class="tab-content hidden">
+            <h2 class="mb-4">Transaction History</h2>
+            
+            <div class="mb-4">
+              <input type="text" id="transaction-search" placeholder="Search transactions..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Payment Method</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="transactions-table">
+                  <tr>
+                    <td colspan="6" class="text-center">Loading...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>BackendPro</h3>
+          <p>Comprehensive backend developer interview preparation course.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 BackendPro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    // Check if user is logged in and is admin
+    document.addEventListener('DOMContentLoaded', () => {
+      const authToken = localStorage.getItem('authToken');
+      const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+      
+      if (!authToken) {
+        window.location.href = '/login.html';
+        return;
+      }
+      
+      if (userInfo.role !== 'admin') {
+        window.location.href = '/dashboard.html';
+        return;
+      }
+    });
+    
+    // Tab navigation
+    function showTab(tabId) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.add('hidden');
+      });
+      
+      // Show selected tab
+      document.getElementById(tabId).classList.remove('hidden');
+      
+      // Update active nav link
+      document.querySelectorAll('.dashboard-nav a').forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      document.querySelector(`.dashboard-nav a[href="#${tabId}"]`).classList.add('active');
+    }
+  </script>
+</body>
+</html>

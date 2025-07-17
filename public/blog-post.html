@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post - Backend Developer Course</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    /* Additional styles for blog post */
+    .blog-post-content {
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+    
+    .blog-post-content h2 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--secondary-color);
+    }
+    
+    .blog-post-content h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--secondary-color);
+    }
+    
+    .blog-post-content p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .blog-post-content ul, .blog-post-content ol {
+      margin-bottom: 1.5rem;
+      padding-left: 2rem;
+    }
+    
+    .blog-post-content li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .blog-post-content pre {
+      background-color: #f8f9fa;
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+    }
+    
+    .blog-post-content code {
+      font-family: 'Courier New', Courier, monospace;
+    }
+    
+    .blog-post-content img {
+      max-width: 100%;
+      height: auto;
+      margin: 1.5rem 0;
+      border-radius: var(--border-radius);
+    }
+    
+    .blog-post-content blockquote {
+      border-left: 4px solid var(--primary-color);
+      padding-left: 1rem;
+      font-style: italic;
+      margin: 1.5rem 0;
+      color: #555;
+    }
+    
+    .blog-post-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .blog-post-meta {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      color: #777;
+    }
+    
+    .blog-post-meta > * {
+      margin-right: 1.5rem;
+    }
+    
+    .blog-post-meta i {
+      margin-right: 0.5rem;
+    }
+    
+    .blog-post-tags {
+      margin-top: 1rem;
+    }
+    
+    .blog-post-tag {
+      display: inline-block;
+      background-color: #f0f0f0;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    
+    .blog-post-tag:hover {
+      background-color: #e0e0e0;
+    }
+    
+    .blog-author {
+      display: flex;
+      align-items: center;
+      background-color: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      margin: 2rem 0;
+    }
+    
+    .blog-author-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-right: 1.5rem;
+      object-fit: cover;
+    }
+    
+    .blog-author-info h4 {
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+    
+    .blog-author-info p {
+      margin-bottom: 0;
+      color: #777;
+    }
+    
+    .comments-section {
+      margin-top: 3rem;
+    }
+    
+    .comment {
+      background-color: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      margin-bottom: 1.5rem;
+    }
+    
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    
+    .comment-author {
+      font-weight: 500;
+    }
+    
+    .comment-date {
+      color: #777;
+      font-size: 0.9rem;
+    }
+    
+    .comment-content {
+      margin-bottom: 0;
+    }
+    
+    .comment-form {
+      margin-top: 2rem;
+    }
+    
+    .comment-form textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      resize: vertical;
+      min-height: 100px;
+      margin-bottom: 1rem;
+    }
+    
+    .related-posts {
+      margin-top: 3rem;
+    }
+    
+    .related-post {
+      display: flex;
+      margin-bottom: 1.5rem;
+    }
+    
+    .related-post-image {
+      width: 100px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      margin-right: 1rem;
+    }
+    
+    .related-post-info h4 {
+      margin-bottom: 0.25rem;
+      font-size: 1rem;
+    }
+    
+    .related-post-info p {
+      margin-bottom: 0;
+      color: #777;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/" class="logo">BackendPro</a>
+        
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/blog.html" class="active">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li id="auth-nav">
+            <a href="/login.html" class="btn btn-sm">Login</a>
+          </li>
+          <li id="user-nav" class="hidden">
+            <a href="/dashboard.html">Dashboard</a>
+          </li>
+          <li id="admin-link" class="hidden">
+            <a href="/admin.html">Admin</a>
+          </li>
+          <li id="user-nav" class="hidden">
+            <a href="#" id="logout-btn">Logout</a>
+          </li>
+        </ul>
+        
+        <div class="mobile-menu" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Blog Post Content -->
+  <section class="py-5" style="padding-top: 8rem !important;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div id="blog-post">
+            <div class="text-center py-4">
+              <i class="fas fa-spinner fa-spin fa-2x"></i>
+              <p>Loading post...</p>
+            </div>
+          </div>
+          
+          <div id="comments-section" class="comments-section">
+            <h3>Comments</h3>
+            <div id="comments-list">
+              <p>Loading comments...</p>
+            </div>
+            
+            <div id="comment-form-container" class="comment-form hidden">
+              <h4>Leave a Comment</h4>
+              <form id="comment-form">
+                <div class="form-group">
+                  <textarea id="comment-content" placeholder="Write your comment here..." required></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Comment</button>
+              </form>
+            </div>
+            
+            <div id="login-to-comment" class="text-center py-3">
+              <p>Please <a href="/login.html">login</a> to leave a comment.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4">
+          <div class="sidebar">
+            <div class="sidebar-section">
+              <h3>Related Posts</h3>
+              <div id="related-posts">
+                <p>Loading related posts...</p>
+              </div>
+            </div>
+            
+            <div class="sidebar-section">
+              <h3>Categories</h3>
+              <ul class="sidebar-list">
+                <li><a href="/blog.html?category=announcement">Announcements</a></li>
+                <li><a href="/blog.html?category=tutorial">Tutorials</a></li>
+                <li><a href="/blog.html?category=news">News</a></li>
+                <li><a href="/blog.html?category=discussion">Discussions</a></li>
+              </ul>
+            </div>
+            
+            <div class="sidebar-section">
+              <h3>Popular Tags</h3>
+              <div class="tags-cloud">
+                <a href="/blog.html?tag=nodejs" class="blog-post-tag">Node.js</a>
+                <a href="/blog.html?tag=databases" class="blog-post-tag">Databases</a>
+                <a href="/blog.html?tag=api" class="blog-post-tag">API</a>
+                <a href="/blog.html?tag=design-patterns" class="blog-post-tag">Design Patterns</a>
+                <a href="/blog.html?tag=security" class="blog-post-tag">Security</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>BackendPro</h3>
+          <p>Comprehensive backend developer interview preparation course.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/blog.html">Blog</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 BackendPro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    // Get post slug from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const postSlug = urlParams.get('slug') || window.location.pathname.split('/').pop();
+    let currentPost = null;
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      loadBlogPost();
+      
+      // Set up comment form
+      const commentForm = document.getElementById('comment-form');
+      if (commentForm) {
+        commentForm.addEventListener('submit', submitComment);
+      }
+      
+      // Check if user is logged in
+      const authToken = localStorage.getItem('authToken');
+      if (authToken) {
+        document.getElementById('comment-form-container').classList.remove('hidden');
+        document.getElementById('login-to-comment').classList.add('hidden');
+      } else {
+        document.getElementById('comment-form-container').classList.add('hidden');
+        document.getElementById('login-to-comment').classList.remove('hidden');
+      }
+    });
+    
+    async function loadBlogPost() {
+      try {
+        const blogPostContainer = document.getElementById('blog-post');
+        
+        // Fetch post
+        const response = await fetch(`/api/posts/${postSlug}`);
+        
+        if (!response.ok) {
+          throw new Error('Post not found');
+        }
+        
+        const post = await response.json();
+        currentPost = post;
+        
+        // Update page title
+        document.title = `${post.title} - Backend Developer Course`;
+        
+        // Render post
+        const categoryBadge = getCategoryBadge(post.category);
+        
+        blogPostContainer.innerHTML = `
+          <article class="blog-post">
+            <div class="blog-post-header">
+              <h1>${post.title}</h1>
+              <div class="blog-post-meta">
+                <span><i class="fas fa-user"></i> ${post.author.name}</span>
+                <span><i class="fas fa-calendar"></i> ${new Date(post.createdAt).toLocaleDateString()}</span>
+                <span><i class="fas fa-folder"></i> ${categoryBadge.text}</span>
+                <span><i class="fas fa-eye"></i> ${post.viewCount} views</span>
+              </div>
+              <div class="blog-post-tags">
+                ${post.tags.map(tag => `<a href="/blog.html?tag=${tag}" class="blog-post-tag">${tag}</a>`).join('')}
+              </div>
+            </div>
+            
+            ${post.featuredImage ? `<img src="${post.featuredImage}" alt="${post.title}" class="blog-post-image">` : ''}
+            
+            <div class="blog-post-content">
+              ${post.content}
+            </div>
+            
+            <div class="blog-author">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="${post.author.name}" class="blog-author-avatar">
+              <div class="blog-author-info">
+                <h4>${post.author.name}</h4>
+                <p>Backend Developer and Course Instructor</p>
+              </div>
+            </div>
+          </article>
+        `;
+        
+        // Load comments
+        loadComments(post.comments);
+        
+        // Load related posts
+        loadRelatedPosts(post.tags, post._id);
+      } catch (error) {
+        console.error('Error loading blog post:', error);
+        document.getElementById('blog-post').innerHTML = `
+          <div class="text-center py-4">
+            <i class="fas fa-exclamation-circle fa-3x mb-3" style="color: #e74c3c;"></i>
+            <h3>Post Not Found</h3>
+            <p>The blog post you're looking for doesn't exist or has been removed.</p>
+            <a href="/blog.html" class="btn mt-3">Back to Blog</a>
+          </div>
+        `;
+      }
+    }
+    
+    function loadComments(comments) {
+      const commentsListContainer = document.getElementById('comments-list');
+      
+      if (!comments || comments.length === 0) {
+        commentsListContainer.innerHTML = '<p>No comments yet. Be the first to comment!</p>';
+        return;
+      }
+      
+      commentsListContainer.innerHTML = '';
+      comments.forEach(comment => {
+        const commentElement = document.createElement('div');
+        commentElement.className = 'comment';
+        commentElement.innerHTML = `
+          <div class="comment-header">
+            <span class="comment-author">${comment.user ? comment.user.name : 'Anonymous'}</span>
+            <span class="comment-date">${new Date(comment.createdAt).toLocaleDateString()}</span>
+          </div>
+          <p class="comment-content">${comment.content}</p>
+        `;
+        commentsListContainer.appendChild(commentElement);
+      });
+    }
+    
+    async function submitComment(e) {
+      e.preventDefault();
+      
+      const commentContent = document.getElementById('comment-content').value.trim();
+      if (!commentContent) return;
+      
+      try {
+        const authToken = localStorage.getItem('authToken');
+        if (!authToken) {
+          alert('You must be logged in to comment.');
+          return;
+        }
+        
+        const response = await fetch(`/api/posts/${currentPost._id}/comments`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify({ content: commentContent })
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to submit comment');
+        }
+        
+        const result = await response.json();
+        
+        // Add new comment to the list
+        const commentsListContainer = document.getElementById('comments-list');
+        const commentElement = document.createElement('div');
+        commentElement.className = 'comment';
+        commentElement.innerHTML = `
+          <div class="comment-header">
+            <span class="comment-author">${result.comment.user.name}</span>
+            <span class="comment-date">Just now</span>
+          </div>
+          <p class="comment-content">${result.comment.content}</p>
+        `;
+        
+        // If this is the first comment, clear the "no comments" message
+        if (commentsListContainer.innerHTML === '<p>No comments yet. Be the first to comment!</p>') {
+          commentsListContainer.innerHTML = '';
+        }
+        
+        commentsListContainer.appendChild(commentElement);
+        
+        // Clear the form
+        document.getElementById('comment-content').value = '';
+      } catch (error) {
+        console.error('Error submitting comment:', error);
+        alert('Failed to submit comment. Please try again.');
+      }
+    }
+    
+    async function loadRelatedPosts(tags, currentPostId) {
+      try {
+        const relatedPostsContainer = document.getElementById('related-posts');
+        
+        // Build query string with tags
+        const queryString = `?limit=3&tags=${tags.join(',')}`;
+        
+        // Fetch related posts
+        const response = await fetch(`/api/posts${queryString}`);
+        const data = await response.json();
+        
+        // Filter out current post
+        const relatedPosts = data.posts.filter(post => post._id !== currentPostId);
+        
+        if (relatedPosts.length === 0) {
+          relatedPostsContainer.innerHTML = '<p>No related posts found.</p>';
+          return;
+        }
+        
+        relatedPostsContainer.innerHTML = '';
+        relatedPosts.slice(0, 3).forEach(post => {
+          const postElement = document.createElement('div');
+          postElement.className = 'related-post';
+          
+          postElement.innerHTML = `
+            ${post.featuredImage ? `<img src="${post.featuredImage}" alt="${post.title}" class="related-post-image">` : ''}
+            <div class="related-post-info">
+              <h4><a href="/blog/${post.slug}">${post.title}</a></h4>
+              <p>${new Date(post.createdAt).toLocaleDateString()}</p>
+            </div>
+          `;
+          
+          relatedPostsContainer.appendChild(postElement);
+        });
+      } catch (error) {
+        console.error('Error loading related posts:', error);
+        document.getElementById('related-posts').innerHTML = '<p>Failed to load related posts.</p>';
+      }
+    }
+    
+    function getCategoryBadge(category) {
+      switch (category) {
+        case 'announcement':
+          return { class: 'badge-primary', text: 'Announcement' };
+        case 'tutorial':
+          return { class: 'badge-success', text: 'Tutorial' };
+        case 'news':
+          return { class: 'badge-info', text: 'News' };
+        case 'discussion':
+          return { class: 'badge-warning', text: 'Discussion' };
+        default:
+          return { class: 'badge-secondary', text: 'Other' };
+      }
+    }
+  </script>
+</body>
+</html>

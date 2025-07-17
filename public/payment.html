@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upgrade to Premium - Backend Developer Course</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/" class="logo">BackendPro</a>
+        
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li id="user-nav">
+            <a href="/dashboard.html">Dashboard</a>
+          </li>
+          <li id="admin-link" class="hidden">
+            <a href="/admin.html">Admin</a>
+          </li>
+          <li id="user-nav">
+            <a href="#" id="logout-btn">Logout</a>
+          </li>
+        </ul>
+        
+        <div class="mobile-menu" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Payment Form -->
+  <div class="auth-container" style="max-width: 600px;">
+    <div class="auth-header">
+      <h2>Upgrade to Premium</h2>
+      <p>Get full access to all questions and answers</p>
+    </div>
+    
+    <div id="payment-alert" class="alert hidden"></div>
+    
+    <div class="mb-4">
+      <h3 class="mb-2">Premium Access Includes:</h3>
+      <ul style="list-style-type: none; padding-left: 0;">
+        <li class="mb-2"><i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i> Full access to all questions and answers</li>
+        <li class="mb-2"><i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i> Detailed explanations with code examples</li>
+        <li class="mb-2"><i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i> Additional resources for further learning</li>
+        <li class="mb-2"><i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i> Lifetime access to all content</li>
+        <li class="mb-2"><i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i> Future updates and new questions</li>
+      </ul>
+    </div>
+    
+    <div class="pricing-card featured mb-4" style="text-align: center;">
+      <div class="pricing-header">
+        <h3 class="pricing-name">Premium Access</h3>
+        <div class="pricing-price">$5</div>
+        <div class="pricing-duration">One-time payment</div>
+      </div>
+    </div>
+    
+    <form id="payment-form" class="auth-form">
+      <div class="form-group">
+        <label for="card-element">Credit or debit card</label>
+        <div id="card-element" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px;"></div>
+        <div id="card-errors" style="color: var(--danger-color); margin-top: 10px;"></div>
+      </div>
+      
+      <button id="pay-button" type="submit" class="btn">Pay $5</button>
+    </form>
+    
+    <div class="auth-footer">
+      <p>Your payment is secure and processed by Stripe.</p>
+      <p>By purchasing, you agree to our <a href="/terms.html">Terms of Service</a>.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>BackendPro</h3>
+          <p>Comprehensive backend developer interview preparation course.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 BackendPro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+    // Check if user is logged in
+    document.addEventListener('DOMContentLoaded', () => {
+      const authToken = localStorage.getItem('authToken');
+      if (!authToken) {
+        window.location.href = '/login.html';
+      }
+      
+      // Check if user already has premium subscription
+      const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}');
+      if (userInfo.subscription === 'premium') {
+        document.getElementById('payment-form').innerHTML = `
+          <div class="alert alert-info">
+            <p>You already have premium access to all content.</p>
+            <a href="/dashboard.html" class="btn mt-3">Go to Dashboard</a>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

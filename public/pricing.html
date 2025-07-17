@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing - Backend Developer Course</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/" class="logo">BackendPro</a>
+        
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li id="auth-nav">
+            <a href="/login.html" class="btn btn-sm">Login</a>
+          </li>
+          <li id="user-nav" class="hidden">
+            <a href="/dashboard.html">Dashboard</a>
+          </li>
+          <li id="admin-link" class="hidden">
+            <a href="/admin.html">Admin</a>
+          </li>
+          <li id="user-nav" class="hidden">
+            <a href="#" id="logout-btn">Logout</a>
+          </li>
+        </ul>
+        
+        <div class="mobile-menu" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Pricing Hero Section -->
+  <section class="hero" style="padding: 8rem 0 3rem;">
+    <div class="container">
+      <h1>Simple, Transparent Pricing</h1>
+      <p>Get access to our comprehensive backend developer interview course at an affordable price</p>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing py-5" style="background-color: white;">
+    <div class="container">
+      <div class="pricing-plans" style="max-width: 900px; margin: 0 auto;">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Free Access</h3>
+            <div class="pricing-price">$0</div>
+            <div class="pricing-duration">Forever</div>
+          </div>
+          
+          <ul class="pricing-features">
+            <li><i class="fas fa-check" style="color: var(--success-color);"></i> Create an account</li>
+            <li><i class="fas fa-check" style="color: var(--success-color);"></i> Access to one free question from each section</li>
+            <li><i class="fas fa-check" style="color: var(--success-color);"></i> Track your progress</li>
+            <li><i class="fas fa-check" style="color: var(--success-color);"></i> Mobile-friendly interface</li>
+            <li><i class="fas fa-times" style="color: var(--danger-color);"></i> Limited content access</li>
+            <li><i class="fas fa-times" style="color: var(--danger-color);"></i> No access to premium questions</li>
+          </ul>
+          
+          <a href="/register.html" class="btn btn-outline">Register Now</a>
+        </div>
+        
+        <div class="pricing-card featured">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Premium Access</h3>
+            <div class="pricing-price">$5</div>
+            <div class="pricing-duration">One-time payment</div>
+          </div>
+          
+          <ul class="pricing-features">
+            <li><i class="fas fa-check" style="color: var(--success-color);"></i> Everything in Free Access</li>
+            <li><i class="fas fa-check" style="color: var(--success-color);"></i> Full access to all questions and answers</li>
+            <li><i class="fas fa-check" style="color: var(--success-color);"></i> Detailed explanations with code examples</li>
+            <li><i class="fas fa-check" style="color: var(--success-color);"></i> Additional resources for further learning</li>
+            <li><i class="fas fa-check" style="color: var(--success-color);"></i> Lifetime access to all content</li>
+            <li><i class="fas fa-check" style="color: var(--success-color);"></i> Future updates and new questions</li>
+          </ul>
+          
+          <a href="/register.html" class="btn">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-5" style="background-color: #f8f9fa;">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      
+      <div style="max-width: 800px; margin: 0 auto;">
+        <div class="mb-4">
+          <h3 class="mb-2">Is this really a one-time payment?</h3>
+          <p>Yes, the $5 premium access is a one-time payment. Once you purchase, you'll have lifetime access to all current and future content.</p>
+        </div>
+        
+        <div class="mb-4">
+          <h3 class="mb-2">What payment methods do you accept?</h3>
+          <p>We accept all major credit cards (Visa, Mastercard, American Express, Discover) through our secure payment processor, Stripe.</p>
+        </div>
+        
+        <div class="mb-4">
+          <h3 class="mb-2">Can I try before I buy?</h3>
+          <p>Absolutely! When you register for a free account, you'll get access to one question from each section. This gives you a good idea of the quality and depth of our content.</p>
+        </div>
+        
+        <div class="mb-4">
+          <h3 class="mb-2">How many questions are included in the course?</h3>
+          <p>The course currently includes hundreds of questions across multiple sections, covering all major backend development topics. We regularly add new questions and sections.</p>
+        </div>
+        
+        <div class="mb-4">
+          <h3 class="mb-2">Do you offer refunds?</h3>
+          <p>Due to the digital nature of our product and the low price point, we generally don't offer refunds. However, if you're experiencing technical issues, please contact our support team.</p>
+        </div>
+        
+        <div class="mb-4">
+          <h3 class="mb-2">How long will I have access to the course?</h3>
+          <p>Once you purchase premium access, you'll have lifetime access to the course, including all future updates and additions.</p>
+        </div>
+        
+        <div class="mb-4">
+          <h3 class="mb-2">Is the content regularly updated?</h3>
+          <p>Yes, we regularly update our content to ensure it remains relevant and accurate. We also add new questions and sections based on feedback and emerging trends in backend development.</p>
+        </div>
+        
+        <div>
+          <h3 class="mb-2">Can I access the course on mobile devices?</h3>
+          <p>Yes, our platform is fully responsive and works well on all devices, including smartphones and tablets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>What Our Students Say</h2>
+      </div>
+      
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">"The best $5 I've ever spent on my career development. The course covers everything you need to know for backend interviews, and the explanations are top-notch."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Michael T." class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Michael T.</div>
+              <div class="testimonial-position">Full Stack Developer</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-text">"I was hesitant about paying for interview prep materials, but this course is worth every penny. The depth and quality of the content is exceptional."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Jessica L." class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Jessica L.</div>
+              <div class="testimonial-position">Backend Developer</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-text">"After going through this course, I felt much more confident in my technical interviews. I ended up receiving offers from two major tech companies!"</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="David K." class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">David K.</div>
+              <div class="testimonial-position">Software Engineer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Invest in Your Career?</h2>
+      <p>For just $5, get lifetime access to our comprehensive backend developer interview course.</p>
+      <a href="/register.html" class="btn btn-lg">Get Started Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>BackendPro</h3>
+          <p>Comprehensive backend developer interview preparation course.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 BackendPro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

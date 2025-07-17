@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Backend Developer Course</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/" class="logo">BackendPro</a>
+        
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li id="auth-nav">
+            <a href="/login.html" class="btn btn-sm">Login</a>
+          </li>
+          <li id="user-nav" class="hidden">
+            <a href="/dashboard.html">Dashboard</a>
+          </li>
+          <li id="admin-link" class="hidden">
+            <a href="/admin.html">Admin</a>
+          </li>
+          <li id="user-nav" class="hidden">
+            <a href="#" id="logout-btn">Logout</a>
+          </li>
+        </ul>
+        
+        <div class="mobile-menu" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- About Hero Section -->
+  <section class="hero" style="padding: 8rem 0 3rem;">
+    <div class="container">
+      <h1>About BackendPro</h1>
+      <p>Learn about our mission to help backend developers succeed in technical interviews</p>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section class="py-5" style="background-color: white;">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Story</h2>
+      </div>
+      
+      <div style="max-width: 800px; margin: 0 auto;">
+        <p class="mb-4">BackendPro was created by a team of experienced backend developers who noticed a gap in the resources available for backend interview preparation. While there were plenty of resources for frontend and general coding interviews, backend-specific resources were harder to find.</p>
+        
+        <p class="mb-4">We started by compiling our own notes and questions from interviews we had conducted and participated in. As we shared these resources with colleagues and friends, we realized there was a significant demand for structured, high-quality backend interview preparation materials.</p>
+        
+        <p class="mb-4">This led to the creation of BackendPro - a comprehensive course designed specifically for backend developers preparing for technical interviews. Our goal is to provide affordable, accessible, and high-quality resources that help developers succeed in their career journeys.</p>
+        
+        <p>Today, BackendPro has helped thousands of developers prepare for and succeed in technical interviews at companies of all sizes, from startups to major tech corporations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Mission Section -->
+  <section class="py-5" style="background-color: #f8f9fa;">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Mission</h2>
+      </div>
+      
+      <div style="max-width: 800px; margin: 0 auto;">
+        <p class="mb-4">Our mission at BackendPro is to empower backend developers with the knowledge and confidence they need to excel in technical interviews and advance their careers.</p>
+        
+        <p class="mb-4">We believe that access to high-quality educational resources should be affordable and accessible to all developers, regardless of their background or experience level. That's why we've made our course available at a one-time payment of just $5, with free questions available to everyone who registers.</p>
+        
+        <p>We're committed to continuously improving and expanding our content to ensure it remains relevant and valuable in the ever-evolving landscape of backend development.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Offer Section -->
+  <section class="py-5" style="background-color: white;">
+    <div class="container">
+      <div class="section-title">
+        <h2>What We Offer</h2>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-question-circle"></i>
+          </div>
+          <h3>Curated Questions</h3>
+          <p>Hundreds of carefully selected backend interview questions covering all major topics.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-comment-alt"></i>
+          </div>
+          <h3>Detailed Answers</h3>
+          <p>Comprehensive explanations that help you understand the concepts, not just memorize answers.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>Code Examples</h3>
+          <p>Practical code examples that illustrate key concepts and best practices.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-book"></i>
+          </div>
+          <h3>Additional Resources</h3>
+          <p>Links to articles, documentation, and other resources for deeper learning.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-tasks"></i>
+          </div>
+          <h3>Progress Tracking</h3>
+          <p>Track your progress as you work through the questions and identify areas for improvement.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Mobile Access</h3>
+          <p>Study on the go with our mobile-friendly interface that works on any device.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-5" style="background-color: #f8f9fa;">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Team</h2>
+        <p>Meet the experienced developers behind BackendPro</p>
+      </div>
+      
+      <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+        <div class="feature-card" style="text-align: center;">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Alex Johnson" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 1rem;">
+          <h3>Alex Johnson</h3>
+          <p style="color: var(--primary-color); margin-bottom: 1rem;">Founder & Lead Developer</p>
+          <p>10+ years of experience in backend development at major tech companies.</p>
+        </div>
+        
+        <div class="feature-card" style="text-align: center;">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Chen" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 1rem;">
+          <h3>Sarah Chen</h3>
+          <p style="color: var(--primary-color); margin-bottom: 1rem;">Content Director</p>
+          <p>Database specialist with experience at financial and e-commerce companies.</p>
+        </div>
+        
+        <div class="feature-card" style="text-align: center;">
+          <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Michael Rodriguez" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 1rem;">
+          <h3>Michael Rodriguez</h3>
+          <p style="color: var(--primary-color); margin-bottom: 1rem;">System Design Expert</p>
+          <p>Architect with expertise in scalable systems and distributed computing.</p>
+        </div>
+        
+        <div class="feature-card" style="text-align: center;">
+          <img src="https://randomuser.me/api/portraits/women/17.jpg" alt="Emily Taylor" style="width: 150px; height: 150px; border-radius: 50%; margin-bottom: 1rem;">
+          <h3>Emily Taylor</h3>
+          <p style="color: var(--primary-color); margin-bottom: 1rem;">Security Specialist</p>
+          <p>Cybersecurity expert with a focus on secure backend implementations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Join Our Community of Backend Developers</h2>
+      <p>Get access to our comprehensive course and start preparing for your next interview today.</p>
+      <a href="/register.html" class="btn btn-lg">Get Started Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>BackendPro</h3>
+          <p>Comprehensive backend developer interview preparation course.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 BackendPro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Backend Developer Course - Master Backend Interview Questions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="/" class="logo">BackendPro</a>
+        
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/pricing.html">Pricing</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li id="auth-nav">
+            <a href="/login.html" class="btn btn-sm">Login</a>
+          </li>
+          <li id="user-nav" class="hidden">
+            <a href="/dashboard.html">Dashboard</a>
+          </li>
+          <li id="admin-link" class="hidden">
+            <a href="/admin.html">Admin</a>
+          </li>
+          <li id="user-nav" class="hidden">
+            <a href="#" id="logout-btn">Logout</a>
+          </li>
+        </ul>
+        
+        <div class="mobile-menu" id="mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>Master Backend Development Interview Questions</h1>
+      <p>Comprehensive course covering essential backend concepts, design patterns, and interview questions to help you ace your next technical interview.</p>
+      <a href="/register.html" class="btn btn-lg">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose Our Course</h2>
+        <p>Designed specifically for backend developers to help you prepare for technical interviews</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3>Comprehensive Content</h3>
+          <p>Access to hundreds of backend interview questions covering databases, system design, algorithms, and more.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <h3>Organized by Topics</h3>
+          <p>Questions are categorized by topics, making it easy to focus on specific areas you want to improve.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>Detailed Explanations</h3>
+          <p>Each question comes with a detailed explanation and code examples when applicable.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3>Learn at Your Pace</h3>
+          <p>Self-paced learning with the ability to track your progress as you go through the questions.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <h3>Affordable Pricing</h3>
+          <p>Get full access to all questions and answers for just $5, with free questions available upon registration.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Mobile Friendly</h3>
+          <p>Access the course on any device, allowing you to study on the go.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Course Overview Section -->
+  <section class="pricing py-5" style="background-color: white;">
+    <div class="container">
+      <div class="section-title">
+        <h2>Course Overview</h2>
+        <p>Our course covers a wide range of topics essential for backend developers</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <h3>Databases</h3>
+          <p>SQL vs NoSQL, indexing, transactions, normalization, and database design principles.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-sitemap"></i>
+          </div>
+          <h3>System Design</h3>
+          <p>Scalability, load balancing, caching strategies, microservices, and distributed systems.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-code-branch"></i>
+          </div>
+          <h3>Design Patterns</h3>
+          <p>Common design patterns, SOLID principles, and architectural patterns for backend systems.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-network-wired"></i>
+          </div>
+          <h3>APIs & Protocols</h3>
+          <p>RESTful APIs, GraphQL, WebSockets, HTTP/HTTPS, and API security best practices.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Security</h3>
+          <p>Authentication, authorization, OWASP top 10, encryption, and secure coding practices.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <h3>Performance</h3>
+          <p>Performance optimization, profiling, benchmarking, and scaling strategies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing">
+    <div class="container">
+      <div class="section-title">
+        <h2>Simple, Affordable Pricing</h2>
+        <p>Get access to all questions and answers for a one-time payment</p>
+      </div>
+      
+      <div class="pricing-plans">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Free Access</h3>
+            <div class="pricing-price">$0</div>
+            <div class="pricing-duration">Forever</div>
+          </div>
+          
+          <ul class="pricing-features">
+            <li>Create an account</li>
+            <li>Access to one free question from each section</li>
+            <li>Track your progress</li>
+            <li>Mobile-friendly interface</li>
+            <li>Limited content access</li>
+          </ul>
+          
+          <a href="/register.html" class="btn btn-outline">Register Now</a>
+        </div>
+        
+        <div class="pricing-card featured">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Premium Access</h3>
+            <div class="pricing-price">$5</div>
+            <div class="pricing-duration">One-time payment</div>
+          </div>
+          
+          <ul class="pricing-features">
+            <li>Everything in Free Access</li>
+            <li>Full access to all questions and answers</li>
+            <li>Detailed explanations with code examples</li>
+            <li>Additional resources for further learning</li>
+            <li>Lifetime access to all content</li>
+            <li>Future updates and new questions</li>
+          </ul>
+          
+          <a href="/register.html" class="btn">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>What Our Students Say</h2>
+        <p>Hear from developers who have used our course to prepare for interviews</p>
+      </div>
+      
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">"This course helped me prepare for my backend developer interview at a major tech company. The questions were spot on and the explanations were clear and concise."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John D." class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">John D.</div>
+              <div class="testimonial-position">Senior Backend Developer</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-text">"I was struggling with system design concepts, but the explanations in this course made everything click. I highly recommend it to any backend developer preparing for interviews."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah M." class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Sarah M.</div>
+              <div class="testimonial-position">Backend Engineer</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p class="testimonial-text">"The best $5 I've ever spent on my career development. The course covers everything you need to know for backend interviews, and the explanations are top-notch."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Michael T." class="testimonial-avatar">
+            <div>
+              <div class="testimonial-name">Michael T.</div>
+              <div class="testimonial-position">Full Stack Developer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Ace Your Next Backend Interview?</h2>
+      <p>Join thousands of developers who have used our course to prepare for technical interviews and advance their careers.</p>
+      <a href="/register.html" class="btn btn-lg">Get Started Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>BackendPro</h3>
+          <p>Comprehensive backend developer interview preparation course.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 BackendPro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
